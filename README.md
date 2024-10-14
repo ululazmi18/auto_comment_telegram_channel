@@ -1,8 +1,3 @@
-Tentu! Berikut adalah isi README.md yang diformat agar mudah disalin sekaligus:
-
-```markdown
-# README.md
-
 ## Keterangan
 Skrip ini memungkinkan pengguna untuk mengirim pesan otomatis ke saluran Telegram. Pesan yang dikirim dapat menyertakan media (gambar atau video) yang disimpan dalam folder `media`. Skrip ini juga secara otomatis bergabung dengan saluran yang diperlukan jika belum terdaftar.
 
