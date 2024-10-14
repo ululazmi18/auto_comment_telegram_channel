@@ -1,0 +1,1 @@
+auto telegram channel comments. random, delay, additional support for image and video media
