@@ -1,3 +1,5 @@
 autokomen.py
 *.session
 *copy.*
+*.txt
+*.json
