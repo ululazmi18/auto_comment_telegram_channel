@@ -1,9 +1,5 @@
 # 🌟 Telegram Auto Messenger
 
-[![Telegram](https://img.shields.io/badge/Telegram-%40Me-orange)](https://t.me/sho6ot)
-
-![Demo](.github/images/demo.png)
-
 ---
 
 ## 📜 Keterangan
