@@ -1,62 +1,55 @@
+# Telegram Auto Messenger
+
+[<img src="https://img.shields.io/badge/Telegram-%40Me-orange">](https://t.me/sho6ot)
+
+![img1](.github/images/demo.png)
+
 ## Keterangan
 Skrip ini memungkinkan pengguna untuk mengirim pesan otomatis ke saluran Telegram. Pesan yang dikirim dapat menyertakan media (gambar atau video) yang disimpan dalam folder `media`. Skrip ini juga secara otomatis bergabung dengan saluran yang diperlukan jika belum terdaftar.
 
 ## Fungsi
-Skrip ini mengirimkan pesan dan media secara otomatis ke saluran Telegram yang ditentukan. Pengguna dapat mengonfigurasi pengaturan seperti API ID, Hash Telegram, nomor telepon, dan delay pengiriman pesan.
+| Fungsionalitas                                                | Didukung |
+|-------------------------------------------------------------|:--------:|
+| Mengirim pesan teks secara otomatis                          |    ✅    |
+| Menyertakan media (gambar atau video) dalam pesan           |    ✅    |
+| Bergabung secara otomatis dengan saluran                     |    ✅    |
+| Konfigurasi delay antara pengiriman pesan                   |    ✅    |
+| Membuat folder dan file konfigurasi secara otomatis          |    ✅    |
 
-## Fitur
-- Mengirim pesan teks dari file .txt secara acak.
-- Menyertakan media (gambar atau video) dalam pesan.
-- Bergabung secara otomatis dengan saluran jika belum terdaftar.
-- Konfigurasi delay antara pengiriman pesan.
-- Membuat folder dan file konfigurasi secara otomatis.
+## Pengaturan
+| Pengaturan               | Deskripsi                                                                                                                   |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| **API_ID / API_HASH**    | Data platform untuk meluncurkan sesi Telegram.                                                                           |
+| **PHONE_NUMBER**         | Nomor telepon yang digunakan untuk autentikasi.                                                                          |
+| **DELAY_MIN / DELAY_MAX**| Rentang delay dalam detik antara pengiriman pesan.                                                                        |
 
-## Langkah-langkah Instalasi
+## Instalasi
+Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan mengkloningnya ke sistem Anda dan menginstal ketergantungan yang diperlukan:
 
-### Windows
-1. **Instal Python**: Pastikan Anda memiliki Python 3.x terinstal. Unduh dari [python.org](https://www.python.org/).
-2. **Instal Library**: Buka Command Prompt dan jalankan perintah:
-   ```bash
-   pip install pyrogram
-   ```
-3. **Siapkan Struktur Folder**: Buat folder untuk skrip dan buat folder `media` dan `text`.
-4. **Jalankan Skrip**: Buka Command Prompt, arahkan ke direktori skrip, dan jalankan:
-   ```bash
-   python main.py
-   ```
+```shell
+# Linux
+~ >>> git clone https://github.com/username/repo.git
+~ >>> cd repo
+~ >>> python3 -m venv venv
+~ >>> source venv/bin/activate
+~ >>> pip install -r requirements.txt
+~ >>> cp config.json.example config.json
+~ >>> nano config.json # Isi dengan API_ID, API_HASH, PHONE_NUMBER
+~ >>> python3 main.py
 
-### Linux
-1. **Instal Python**: Pastikan Python 3.x terinstal. Gunakan perintah:
-   ```bash
-   sudo apt-get install python3
-   ```
-2. **Instal Library**: Jalankan perintah:
-   ```bash
-   pip3 install pyrogram
-   ```
-3. **Siapkan Struktur Folder**: Buat folder untuk skrip dan buat folder `media` dan `text`.
-4. **Jalankan Skrip**: Buka terminal, arahkan ke direktori skrip, dan jalankan:
-   ```bash
-   python3 main.py
-   ```
-
-### Termux
-1. **Instal Python**: Jalankan perintah berikut di Termux:
-   ```bash
-   pkg install python
-   ```
-2. **Instal Library**: Jalankan perintah:
-   ```bash
-   pip install pyrogram
-   ```
-3. **Siapkan Struktur Folder**: Buat folder untuk skrip dan folder `media` dan `text` di Termux.
-4. **Jalankan Skrip**: Arahkan ke direktori skrip dan jalankan:
-   ```bash
-   python main.py
-   ```
+# Windows
+~ >>> git clone https://github.com/username/repo.git
+~ >>> cd repo
+~ >>> python -m venv venv
+~ >>> venv\Scripts\activate
+~ >>> pip install -r requirements.txt
+~ >>> copy config.json.example config.json
+~ >>> # Isi dengan API_ID, API_HASH, PHONE_NUMBER
+~ >>> python main.py
+```
 
 ## Cara Penggunaan
-1. **Konfigurasi `config.json`**: Setelah menjalankan skrip pertama kali, file `config.json` akan dibuat. Isi file ini dengan `api_id`, `api_hash`, `phone_number`, dan delay pengiriman (min dan max).
+1. **Konfigurasi `config.json`**: Setelah menjalankan skrip pertama kali, file `config.json` akan dibuat. Isi file ini dengan `api_id`, `api_hash`, `phone_number`, dan rentang delay pengiriman.
 2. **Menambahkan Saluran**: Edit file `channels.txt` untuk menambahkan saluran yang ingin Anda ikuti.
 3. **Menambahkan Media**: Simpan gambar atau video dalam folder `media`.
 4. **Menambahkan Teks**: Buat file .txt di folder `text` yang berisi pesan yang ingin dikirim.
