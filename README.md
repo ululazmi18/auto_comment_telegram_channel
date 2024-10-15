@@ -62,19 +62,13 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    ```
    Installs all required packages listed in `requirements.txt`.
 
-6. **Copy Configuration File**
-   ```bash
-   cp config.json.example config.json
-   ```
-   Creates a copy of the example configuration file named `config.json`.
-
-7. **Edit Configuration File**
+6. **Edit Configuration File**
    ```bash
    nano config.json
    ```
    Edits the `config.json` file. Fill it with `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
 
-8. **Run the Script**
+7. **Run the Script**
    ```bash
    python3 main.py
    ```
@@ -112,19 +106,11 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    ```
    Installs all required packages listed in `requirements.txt`.
 
-6. **Copy Configuration File**
-   ```bash
-   copy config.json.example config.json
-   ```
-   Creates a copy of the example configuration file named `config.json`.
-
-7. **Edit Configuration File**
-   ```plaintext
-   # Fill in with API_ID, API_HASH, PHONE_NUMBER
-   ```
+6. **Edit Configuration File**
+   Fill in with API_ID, API_HASH, PHONE_NUMBER
    Open the `config.json` file and fill it with the required information.
 
-8. **Run the Script**
+7. **Run the Script**
    ```bash
    python main.py
    ```
@@ -182,18 +168,13 @@ Here's the English version of your instructions:
    pip install -r requirements.txt
    ```
 
-10. **Copy Configuration File**
-    ```bash
-    cp config.json.example config.json
-    ```
-
-11. **Edit Configuration File**
+10. **Edit Configuration File**
     ```bash
     nano config.json
     ```
     Fill in with `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
 
-12. **Run the Script**
+11. **Run the Script**
     ```bash
     python main.py
     ```
