@@ -30,6 +30,7 @@ This script allows users to **send automated messages** to Telegram channels. Th
 ## 📥 Installation
 You can download the [**Repository**](https://github.com/username/repo) by cloning it to your system and installing the necessary dependencies. Here are the separate steps for each command:
 
+---
 ### Linux
 1. **Clone Repository**
    ```bash
@@ -79,6 +80,7 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    ```
    Executes the main script to activate the features.
 
+---
 ### Windows
 1. **Clone Repository**
    ```bash
@@ -126,61 +128,77 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    ```bash
    python main.py
    ```
+Here's the English version of your instructions:
 
+---
 ### Termux
+
 1. **Update Packages**
    ```bash
    pkg update && pkg upgrade
    ```
 
-2. **Install Required Packages**
+2. **Allow Storage Access**
+   Run the following command to grant storage access:
+   ```bash
+   termux-setup-storage
+   ```
+   After running this command, select "Allow" when prompted.
+
+3. **Access Internal Folder**
+   To access the internal folder, use the following command:
+   ```bash
+   cd /storage/emulated/0
+   ```
+
+4. **Install Required Packages**
    ```bash
    pkg install python git
    ```
 
-3. **Clone Repository**
+5. **Clone Repository**
    ```bash
    git clone https://github.com/ululazmi18/auto_comment_telegram_channel.git
    ```
-   This downloads a copy of the repository to your device.
+   This will download a copy of the repository to your device.
 
-4. **Navigate to Directory**
+6. **Navigate to the Directory**
    ```bash
    cd auto_comment_telegram_channel
    ```
 
-5. **Create Virtual Environment**
+7. **Create a Virtual Environment**
    ```bash
    python -m venv venv
    ```
 
-6. **Activate Virtual Environment**
+8. **Activate the Virtual Environment**
    ```bash
    source venv/bin/activate
    ```
 
-7. **Install Dependencies**
+9. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-8. **Copy Configuration File**
-   ```bash
-   cp config.json.example config.json
-   ```
+10. **Copy Configuration File**
+    ```bash
+    cp config.json.example config.json
+    ```
 
-9. **Edit Configuration File**
-   ```bash
-   nano config.json
-   ```
-   Fill in the `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
+11. **Edit Configuration File**
+    ```bash
+    nano config.json
+    ```
+    Fill in with `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
 
-10. **Run the Script**
+12. **Run the Script**
     ```bash
     python main.py
     ```
 
-
+---
 ## 🚀 How to Use
 1. **Configure `config.json`**: After running the script for the first time, the `config.json` file will be created. Fill this file with `api_id`, `api_hash`, `phone_number`, and the delay range for sending messages.
 2. **Add Channels**: Edit the `channels.txt` file to add the channels you want to follow.
