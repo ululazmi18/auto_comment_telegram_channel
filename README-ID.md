@@ -30,6 +30,7 @@ Skrip ini memungkinkan pengguna untuk **mengirim pesan otomatis** ke saluran Tel
 ## 📥 Instalasi
 Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan mengkloningnya ke sistem Anda dan menginstal ketergantungan yang diperlukan. Berikut adalah langkah-langkah terpisah untuk setiap perintah:
 
+---
 ### Linux
 1. **Clone Repository**
    ```bash
@@ -77,8 +78,7 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
    ```bash
    python3 main.py
    ```
-   Menjalankan skrip utama untuk mengaktifkan fitur.
-
+---
 ### Windows
 1. **Clone Repository**
    ```bash
@@ -128,60 +128,72 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
    ```
 
 ---
-
 ### Termux
+
 1. **Perbarui Paket**
    ```bash
    pkg update && pkg upgrade
    ```
 
-2. **Instal Paket yang Diperlukan**
+2. **Izinkan Akses Penyimpanan**
+   Jalankan perintah berikut untuk memberikan izin akses ke penyimpanan:
+   ```bash
+   termux-setup-storage
+   ```
+   Setelah menjalankan perintah ini, pilih "Izinkan" saat diminta.
+
+3. **Akses Folder Internal**
+   Untuk mengakses folder internal, gunakan perintah berikut:
+   ```bash
+   cd /storage/emulated/0
+   ```
+
+4. **Instal Paket yang Diperlukan**
    ```bash
    pkg install python git
    ```
 
-3. **Clone Repository**
+5. **Clone Repository**
    ```bash
    git clone https://github.com/ululazmi18/auto_comment_telegram_channel.git
    ```
    Ini akan mengunduh salinan repository ke perangkat Anda.
 
-4. **Masuk ke Direktori**
+6. **Masuk ke Direktori**
    ```bash
    cd auto_comment_telegram_channel
    ```
 
-5. **Buat Lingkungan Virtual**
+7. **Buat Lingkungan Virtual**
    ```bash
    python -m venv venv
    ```
 
-6. **Aktifkan Lingkungan Virtual**
+8. **Aktifkan Lingkungan Virtual**
    ```bash
    source venv/bin/activate
    ```
 
-7. **Instal Dependensi**
+9. **Instal Dependensi**
    ```bash
    pip install -r requirements.txt
    ```
 
-8. **Salin File Konfigurasi**
-   ```bash
-   cp config.json.example config.json
-   ```
+10. **Salin File Konfigurasi**
+    ```bash
+    cp config.json.example config.json
+    ```
 
-9. **Edit File Konfigurasi**
-   ```bash
-   nano config.json
-   ```
-   Isi dengan `API_ID`, `API_HASH`, dan `PHONE_NUMBER`.
+11. **Edit File Konfigurasi**
+    ```bash
+    nano config.json
+    ```
+    Isi dengan `API_ID`, `API_HASH`, dan `PHONE_NUMBER`.
 
-10. **Jalankan Skrip**
+12. **Jalankan Skrip**
     ```bash
     python main.py
     ```
-
 ---
 
 ## 🚀 Cara Penggunaan
