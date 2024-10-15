@@ -62,19 +62,13 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
    ```
    Menginstal semua paket yang dibutuhkan yang terdaftar di `requirements.txt`.
 
-6. **Salin File Konfigurasi**
-   ```bash
-   cp config.json.example config.json
-   ```
-   Membuat salinan dari file contoh konfigurasi menjadi `config.json`.
-
-7. **Edit File Konfigurasi**
+6. **Edit File Konfigurasi**
    ```bash
    nano config.json
    ```
    Mengedit file `config.json`. Isi dengan `API_ID`, `API_HASH`, dan `PHONE_NUMBER`.
 
-8. **Jalankan Skrip**
+7. **Jalankan Skrip**
    ```bash
    python3 main.py
    ```
@@ -110,19 +104,13 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
    ```
    Menginstal semua paket yang dibutuhkan yang terdaftar di `requirements.txt`.
 
-6. **Salin File Konfigurasi**
-   ```bash
-   copy config.json.example config.json
-   ```
-   Membuat salinan dari file contoh konfigurasi menjadi `config.json`.
-
-7. **Edit File Konfigurasi**
+6. **Edit File Konfigurasi**
    ```plaintext
    # Isi dengan API_ID, API_HASH, PHONE_NUMBER
    ```
    Buka file `config.json` dan isi dengan informasi yang diperlukan.
 
-8. **Jalankan Skrip**
+7. **Jalankan Skrip**
    ```bash
    python main.py
    ```
@@ -135,22 +123,22 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
    pkg update && pkg upgrade
    ```
 
-2. **Izinkan Akses Penyimpanan**
+2. **Instal Paket yang Diperlukan**
+   ```bash
+   pkg install python git
+   ```
+
+3. **Izinkan Akses Penyimpanan**
    Jalankan perintah berikut untuk memberikan izin akses ke penyimpanan:
    ```bash
    termux-setup-storage
    ```
    Setelah menjalankan perintah ini, pilih "Izinkan" saat diminta.
 
-3. **Akses Folder Internal**
+4. **Akses Folder Internal**
    Untuk mengakses folder internal, gunakan perintah berikut:
    ```bash
    cd /storage/emulated/0
-   ```
-
-4. **Instal Paket yang Diperlukan**
-   ```bash
-   pkg install python git
    ```
 
 5. **Clone Repository**
@@ -179,18 +167,13 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
    pip install -r requirements.txt
    ```
 
-10. **Salin File Konfigurasi**
-    ```bash
-    cp config.json.example config.json
-    ```
-
-11. **Edit File Konfigurasi**
+10. **Edit File Konfigurasi**
     ```bash
     nano config.json
     ```
     Isi dengan `API_ID`, `API_HASH`, dan `PHONE_NUMBER`.
 
-12. **Jalankan Skrip**
+11. **Jalankan Skrip**
     ```bash
     python main.py
     ```
