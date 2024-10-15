@@ -129,6 +129,61 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
 
 ---
 
+### Termux
+1. **Perbarui Paket**
+   ```bash
+   pkg update && pkg upgrade
+   ```
+
+2. **Instal Paket yang Diperlukan**
+   ```bash
+   pkg install python git
+   ```
+
+3. **Clone Repository**
+   ```bash
+   git clone https://github.com/ululazmi18/auto_comment_telegram_channel.git
+   ```
+   Ini akan mengunduh salinan repository ke perangkat Anda.
+
+4. **Masuk ke Direktori**
+   ```bash
+   cd auto_comment_telegram_channel
+   ```
+
+5. **Buat Lingkungan Virtual**
+   ```bash
+   python -m venv venv
+   ```
+
+6. **Aktifkan Lingkungan Virtual**
+   ```bash
+   source venv/bin/activate
+   ```
+
+7. **Instal Dependensi**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+8. **Salin File Konfigurasi**
+   ```bash
+   cp config.json.example config.json
+   ```
+
+9. **Edit File Konfigurasi**
+   ```bash
+   nano config.json
+   ```
+   Isi dengan `API_ID`, `API_HASH`, dan `PHONE_NUMBER`.
+
+10. **Jalankan Skrip**
+    ```bash
+    python main.py
+    ```
+
+---
+
 ## 🚀 Cara Penggunaan
 1. **Konfigurasi `config.json`**: Setelah menjalankan skrip pertama kali, file `config.json` akan dibuat. Isi file ini dengan `api_id`, `api_hash`, `phone_number`, dan rentang delay pengiriman.
 2. **Menambahkan Saluran**: Edit file `channels.txt` untuk menambahkan saluran yang ingin Anda ikuti.
