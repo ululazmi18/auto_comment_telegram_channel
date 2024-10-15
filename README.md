@@ -127,7 +127,59 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    python main.py
    ```
 
----
+### Termux
+1. **Update Packages**
+   ```bash
+   pkg update && pkg upgrade
+   ```
+
+2. **Install Required Packages**
+   ```bash
+   pkg install python git
+   ```
+
+3. **Clone Repository**
+   ```bash
+   git clone https://github.com/ululazmi18/auto_comment_telegram_channel.git
+   ```
+   This downloads a copy of the repository to your device.
+
+4. **Navigate to Directory**
+   ```bash
+   cd auto_comment_telegram_channel
+   ```
+
+5. **Create Virtual Environment**
+   ```bash
+   python -m venv venv
+   ```
+
+6. **Activate Virtual Environment**
+   ```bash
+   source venv/bin/activate
+   ```
+
+7. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+8. **Copy Configuration File**
+   ```bash
+   cp config.json.example config.json
+   ```
+
+9. **Edit Configuration File**
+   ```bash
+   nano config.json
+   ```
+   Fill in the `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
+
+10. **Run the Script**
+    ```bash
+    python main.py
+    ```
+
 
 ## 🚀 How to Use
 1. **Configure `config.json`**: After running the script for the first time, the `config.json` file will be created. Fill this file with `api_id`, `api_hash`, `phone_number`, and the delay range for sending messages.
