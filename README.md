@@ -138,22 +138,22 @@ Here's the English version of your instructions:
    pkg update && pkg upgrade
    ```
 
-2. **Allow Storage Access**
+2. **Install Required Packages**
+   ```bash
+   pkg install python git
+   ```
+
+3. **Allow Storage Access**
    Run the following command to grant storage access:
    ```bash
    termux-setup-storage
    ```
    After running this command, select "Allow" when prompted.
 
-3. **Access Internal Folder**
+4. **Access Internal Folder**
    To access the internal folder, use the following command:
    ```bash
    cd /storage/emulated/0
-   ```
-
-4. **Install Required Packages**
-   ```bash
-   pkg install python git
    ```
 
 5. **Clone Repository**
