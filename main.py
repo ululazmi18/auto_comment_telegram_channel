@@ -1,3 +1,4 @@
+import argparse
 from pyrogram import Client, types, filters
 from datetime import datetime
 import re
@@ -6,22 +7,34 @@ import os
 import json
 import random
 import logging
-import sys
 
+# Konfigurasi logging
 logging.basicConfig(level=logging.ERROR)
 
-# Cek apakah nomor telepon diberikan sebagai argumen
-phone_number = sys.argv[1] if len(sys.argv) > 1 else None
+# Setup argparser
+parser = argparse.ArgumentParser(description='Skrip Auto Comment Telegram')
+parser.add_argument('phone_number', nargs='?', help='Nomor telepon untuk akun Telegram')
+parser.add_argument('--api', nargs=2, metavar=('API_ID', 'API_HASH'), help='API ID dan API Hash untuk Telegram')
+parser.add_argument('--delay', nargs=2, type=int, metavar=('MIN', 'MAX'), help='Delay minimum dan maksimum dalam detik')
+
+args = parser.parse_args()
+
+# Ambil argumen dari parser
+phone_number = args.phone_number
+api_id = args.api[0] if args.api else None
+api_hash = args.api[1] if args.api else ""
+delay_min = args.delay[0] if args.delay else 30
+delay_max = args.delay[1] if args.delay else 120
 
 config_file = 'config.json'
 
-# Jika config.json belum ada, buat dengan nomor telepon yang diberikan atau kosong
+# Jika config.json belum ada, buat dengan default
 default_config = {
     "api_id": None,
     "api_hash": "",
     "phone_number": phone_number,
-    "delay_min": 30,
-    "delay_max": 120
+    "delay_min": delay_min,
+    "delay_max": delay_max
 }
 
 if not os.path.exists(config_file):
@@ -33,26 +46,38 @@ if not os.path.exists(config_file):
 with open(config_file, 'r', encoding='utf-8') as f:
     config = json.load(f)
 
-# Update nomor telepon jika diberikan sebagai argumen dan berbeda dari yang ada di config.json
-if phone_number and config.get('phone_number') != phone_number:
-    config['phone_number'] = phone_number
-    with open(config_file, 'w', encoding='utf-8') as f:
-        json.dump(config, f, indent=4)
-    print(f"Nomor telepon dalam config.json telah diperbarui menjadi {phone_number}.")
-else:
-    # Gunakan nomor telepon dari config.json jika tidak diberikan sebagai argumen
+# Jika phone_number tidak diberikan sebagai argumen, ambil dari config.json
+if phone_number is None:
     phone_number = config.get('phone_number')
 
+# Validasi phone_number
+if phone_number is None:
+    print("Error: phone_number harus diberikan sebagai argumen atau ada dalam config.json.")
+    exit()
+
+# Update config jika argumen diberikan
+if args.phone_number:
+    config['phone_number'] = phone_number
+if api_hash and api_id is not None:  # Hanya jika api_hash dan api_id diberikan
+    config['api_id'] = int(api_id)  # Pastikan api_id adalah integer
+    config['api_hash'] = api_hash
+if args.delay:
+    config['delay_min'] = delay_min
+    config['delay_max'] = delay_max
+
+# Simpan perubahan pada config.json
+with open(config_file, 'w', encoding='utf-8') as f:
+    json.dump(config, f, indent=4)
+
+# Ambil nilai dari config
 api_id = config.get('api_id')
 api_hash = config.get('api_hash')
-delay_min = config.get('delay_min', 30)
-delay_max = config.get('delay_max', 120)
 
-if api_id is None or api_hash == "" or phone_number == "":
+if api_id is None or api_hash == "":
     print("Silakan isi api_id, api_hash, dan phone_number di config.json sebelum menjalankan skrip.")
     exit()
 
-app = Client(phone_number, api_id=api_id, api_hash=api_hash, phone_number=phone_number)
+app = Client(phone_number, api_id=api_id, api_hash=api_hash)
 
 print(f'{datetime.now()}')
 print(f'Aplikasi auto komen sudah aktif.')
