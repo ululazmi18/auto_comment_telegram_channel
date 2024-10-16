@@ -147,22 +147,12 @@ def extract_channel_username(url):
     return match.group('username') if match else None
     
 async def main():
-    try:
-        async with app:
-            for channel in target_channels:
-                if channel.startswith('https://t.me/'):
-                    channel = extract_channel_username(channel)
+    async with app:
+        for channel in target_channels:
+            app.add_handler(app.on_message(filters.chat(channel))(handle_message))
 
-                try:
-                    await app.join_chat(channel)
-                    app.add_handler(app.on_message(filters.chat(channel))(handle_message))
-                except Exception:
-                    pass
-
-            while True:
-                await asyncio.sleep(60)
-    except KeyboardInterrupt:
-        print("Aplikasi berhasil keluar.")
+        while True:
+            await asyncio.sleep(60)
 
 if __name__ == '__main__':
     app.run(main())
