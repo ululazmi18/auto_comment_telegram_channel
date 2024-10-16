@@ -81,7 +81,7 @@ if api_id is None or api_hash == "":
 
 app = Client(phone_number, api_id=api_id, api_hash=api_hash)
 
-print(f'{datetime.now()}')
+print(f'{datetime.now()} ({phone_number})')
 print(f'Aplikasi auto komen sudah aktif.')
 
 os.makedirs('text', exist_ok=True)
