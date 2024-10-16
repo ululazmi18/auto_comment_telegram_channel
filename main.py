@@ -40,7 +40,8 @@ default_config = {
 if not os.path.exists(config_file):
     with open(config_file, 'w', encoding='utf-8') as f:
         json.dump(default_config, f, indent=4)
-    print("File config.json telah dibuat. Silakan isi dengan API ID, Hash, dan delay.")
+    print("File config.json telah dibuat. Silakan isi dengan API ID, Hash, dan delay. atau dengan")
+    print("python main.py +621234567890 --api 123456 abcdef1234567890abcdef1234567890 --delay 10 60")
 
 # Baca config.json yang ada
 with open(config_file, 'r', encoding='utf-8') as f:
@@ -74,7 +75,8 @@ api_id = config.get('api_id')
 api_hash = config.get('api_hash')
 
 if api_id is None or api_hash == "":
-    print("Silakan isi api_id, api_hash, dan phone_number di config.json sebelum menjalankan skrip.")
+    print("Silakan isi api_id, api_hash, dan phone_number di config.json sebelum menjalankan skrip. atau dengan")
+    print("python main.py +621234567890 --api 123456 abcdef1234567890abcdef1234567890 --delay 10 60")
     exit()
 
 app = Client(phone_number, api_id=api_id, api_hash=api_hash)
