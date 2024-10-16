@@ -1,4 +1,48 @@
-Sure! Here’s the updated installation section without "All Systems":
+# How to Use
+
+## Command Line Options / Arguments
+
+This script/program supports several argument parameters that can be used. Here's an explanation of the arguments:
+
+### `phone_number` (required)
+This argument is used to specify the phone number for authentication with the Telegram API. It should be in international format, for example: `+621234567890`. This is a mandatory argument for the script to function correctly.
+
+**Example:**  
+```bash
+python main.py +621234567890
+```
+
+### `api_id` (optional)
+This argument is used to provide the API ID of your application, which you can obtain from [my.telegram.org](https://my.telegram.org/). It is optional and will only be used if `api_hash` is also provided. If included, it will update the value in `config.json`.
+
+**Example:**  
+```bash
+python main.py +621234567890 123456
+```
+
+### `api_hash` (optional)
+This argument is used to provide the API Hash of your application, which you also get from Telegram. This is required if you wish to update `api_id` in `config.json`. If `api_hash` is not provided, any specified `api_id` will be ignored, and `config.json` will remain unchanged.
+
+**Example:**  
+```bash
+python main.py +621234567890 123456 abcdef1234567890abcdef1234567890
+```
+
+### Example of Full Command
+To authenticate and update both `api_id` and `api_hash`, you would run:
+```bash
+python main.py +621234567890 123456 abcdef1234567890abcdef1234567890
+```
+
+If you only want to authenticate using the phone number and keep existing configurations, you can run:
+```bash
+python main.py +621234567890
+```
+
+### Summary
+- Use `phone_number` to authenticate.
+- Include `api_id` and `api_hash` if you want to update these values in `config.json`.
+- If only `api_id` is provided without `api_hash`, it will be ignored, and no changes will be made.
 
 ---
 
@@ -61,15 +105,6 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    ```bash
    cd /storage/emulated/0
    ```
-
----
-
-## 🚀 How to Use
-1. **Configure `config.json`**: After running the script for the first time, fill this file with `api_id`, `api_hash`, `phone_number`, and the delay range for sending messages.
-2. **Add Channels**: Edit the `channels.txt` file to add the channels you want to follow.
-3. **Add Media**: Save images or videos in the `media` folder.
-4. **Add Text**: Create a .txt file in the `text` folder containing the messages you want to send.
-5. **Run the Script**: Once all configurations are done, run the script and wait for the messages to be sent automatically as per the specified settings.
 
 ---
 
