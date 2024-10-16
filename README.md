@@ -110,7 +110,7 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
 5. **Set Up Git for Security**
    To allow Git operations in Termux, run:
    ```bash
-   git config --global --add safe.directory /storage/emulated/0/
+   git config --global --add safe.directory /storage/emulated/0/auto_comment_telegram_channel
    ```
 
 ---
