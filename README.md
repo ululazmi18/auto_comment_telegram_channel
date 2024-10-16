@@ -5,11 +5,11 @@
 This script/program supports several argument parameters that can be used. Here's an explanation of the arguments:
 
 ### `phone_number` (required)
-This argument is used to specify the phone number for authentication with the Telegram API. It should be in international format, for example: `+621234567890`. This is a mandatory argument for the script to function correctly.
+This argument is used to specify the phone number for authentication with the Telegram API. It should be in international format, for example: `621234567890`. This is a mandatory argument for the script to function correctly.
 
 **Example:**  
 ```bash
-python main.py +621234567890
+python main.py 621234567890
 ```
 
 ### `api_id` (optional)
@@ -17,7 +17,7 @@ This argument is used to provide the API ID of your application, which you can o
 
 **Example:**  
 ```bash
-python main.py +621234567890 123456
+python main.py 621234567890 123456
 ```
 
 ### `api_hash` (optional)
@@ -25,18 +25,18 @@ This argument is used to provide the API Hash of your application, which you als
 
 **Example:**  
 ```bash
-python main.py +621234567890 123456 abcdef1234567890abcdef1234567890
+python main.py 621234567890 123456 abcdef1234567890abcdef1234567890
 ```
 
 ### Example of Full Command
 To authenticate and update both `api_id` and `api_hash`, you would run:
 ```bash
-python main.py +621234567890 123456 abcdef1234567890abcdef1234567890
+python main.py 621234567890 123456 abcdef1234567890abcdef1234567890
 ```
 
 If you only want to authenticate using the phone number and keep existing configurations, you can run:
 ```bash
-python main.py +621234567890
+python main.py 621234567890
 ```
 
 ### Summary
