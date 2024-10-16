@@ -1,3 +1,5 @@
+media/
+text/
 autokomen.py
 channels.txt
 *.session
