@@ -4,45 +4,46 @@
 
 This script/program supports several argument parameters that can be used. Here's an explanation of the arguments:
 
-### `phone_number` (required)
-This argument is used to specify the phone number for authentication with the Telegram API. It should be in international format, for example: `621234567890`. This is a mandatory argument for the script to function correctly.
+### `phone_number` (optional)
+This argument is used to specify the phone number for authentication with the Telegram API. It should be in international format, for example: `+621234567890`. This argument is optional; if not provided, it will be read from `config.json`.
 
 **Example:**  
 ```bash
-python main.py 621234567890
+python main.py +621234567890
 ```
 
-### `api_id` (optional)
-This argument is used to provide the API ID of your application, which you can obtain from [my.telegram.org](https://my.telegram.org/). It is optional and will only be used if `api_hash` is also provided. If included, it will update the value in `config.json`.
+### `--api API_ID API_HASH` (optional)
+This argument is used to provide the API ID and API Hash of your application, which you can obtain from [my.telegram.org](https://my.telegram.org/). This argument is optional and will update the values in `config.json` only if both are provided.
 
 **Example:**  
 ```bash
-python main.py 621234567890 123456
+python main.py --api 123456 abcdef1234567890abcdef1234567890
 ```
 
-### `api_hash` (optional)
-This argument is used to provide the API Hash of your application, which you also get from Telegram. This is required if you wish to update `api_id` in `config.json`. If `api_hash` is not provided, any specified `api_id` will be ignored, and `config.json` will remain unchanged.
+### `--delay MIN MAX` (optional)
+This argument allows you to set the minimum and maximum delay in seconds for the script's actions. If not specified, the default values (30 and 120 seconds) will be used.
 
 **Example:**  
 ```bash
-python main.py 621234567890 123456 abcdef1234567890abcdef1234567890
+python main.py --delay 10 60
 ```
 
 ### Example of Full Command
-To authenticate and update both `api_id` and `api_hash`, you would run:
+To run the script with a specified phone number, API ID, API Hash, and delay:
 ```bash
-python main.py 621234567890 123456 abcdef1234567890abcdef1234567890
+python main.py +621234567890 --api 123456 abcdef1234567890abcdef1234567890 --delay 10 60
 ```
 
-If you only want to authenticate using the phone number and keep existing configurations, you can run:
+If you only want to authenticate using the phone number and keep existing configurations:
 ```bash
-python main.py 621234567890
+python main.py +621234567890
 ```
 
 ### Summary
-- Use `phone_number` to authenticate.
-- Include `api_id` and `api_hash` if you want to update these values in `config.json`.
-- If only `api_id` is provided without `api_hash`, it will be ignored, and no changes will be made.
+- Use `phone_number` to authenticate or read it from `config.json`.
+- Include `--api` to update both `API_ID` and `API_HASH` in `config.json`.
+- Use `--delay` to set the action delay.
+- If `API_ID` is provided without `API_HASH`, the change will not be applied.
 
 ---
 
@@ -106,8 +107,12 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    cd /storage/emulated/0
    ```
 
+5. **Set Up Git for Security**
+   To allow Git operations in Termux, run:
+   ```bash
+   git config --global --add safe.directory /storage/emulated/0/
+   ```
+
 ---
 
 This script is a useful tool for managing communication in Telegram channels automatically. Be sure to comply with Telegram's policies while using this script.
-
----
