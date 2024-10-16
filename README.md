@@ -153,28 +153,18 @@ Here's the English version of your instructions:
    cd auto_comment_telegram_channel
    ```
 
-7. **Create a Virtual Environment**
-   ```bash
-   python -m venv venv
-   ```
-
-8. **Activate the Virtual Environment**
-   ```bash
-   source venv/bin/activate
-   ```
-
-9. **Install Dependencies**
+7. **Install Dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-10. **Edit Configuration File**
+8. **Edit Configuration File**
     ```bash
     nano config.json
     ```
     Fill in with `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
 
-11. **Run the Script**
+9. **Run the Script**
     ```bash
     python main.py
     ```
