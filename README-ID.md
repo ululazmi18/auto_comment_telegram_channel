@@ -152,28 +152,18 @@ Anda dapat mengunduh [**Repository**](https://github.com/username/repo) dengan m
    cd auto_comment_telegram_channel
    ```
 
-7. **Buat Lingkungan Virtual**
-   ```bash
-   python -m venv venv
-   ```
-
-8. **Aktifkan Lingkungan Virtual**
-   ```bash
-   source venv/bin/activate
-   ```
-
-9. **Instal Dependensi**
+7. **Instal Dependensi**
    ```bash
    pip install -r requirements.txt
    ```
 
-10. **Edit File Konfigurasi**
+8. **Edit File Konfigurasi**
     ```bash
     nano config.json
     ```
     Isi dengan `API_ID`, `API_HASH`, dan `PHONE_NUMBER`.
 
-11. **Jalankan Skrip**
+9. **Jalankan Skrip**
     ```bash
     python main.py
     ```
