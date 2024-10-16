@@ -1,45 +1,50 @@
 from pyrogram import Client, types, filters
 from datetime import datetime
 import re
-from pyrogram.errors.exceptions.forbidden_403 import Forbidden
 import asyncio
 import os
 import json
 import random
 import logging
+import sys
 
 logging.basicConfig(level=logging.ERROR)
 
-print("Skrip ini memungkinkan Anda mengirim pesan otomatis ke saluran Telegram.")
-print("Simpan media (gambar atau video) dalam folder 'media' untuk menyertakan dalam pesan.")
-print("Jika folder 'media' belum ada, skrip ini akan membuatnya secara otomatis.")
-print("File 'config.json' akan dibuat jika belum ada. Isikan dengan API ID, Hash Telegram, nomor telepon, dan delay pengiriman.")
-print("Folder 'text' akan dibuat jika belum ada, berisi file .txt yang akan dikirim secara acak.")
-print("File 'channels.txt' akan dibuat jika belum ada, berisi daftar saluran yang akan diikuti.")
-print("Pastikan untuk mengisi 'config.json' dengan informasi yang diperlukan sebelum menjalankan skrip.")
-print("Skrip ini juga akan secara otomatis bergabung dengan saluran yang diperlukan jika belum terdaftar.")
+# Cek apakah nomor telepon diberikan sebagai argumen
+phone_number = sys.argv[1] if len(sys.argv) > 1 else None
 
 config_file = 'config.json'
 
+# Jika config.json belum ada, buat dengan nomor telepon yang diberikan atau kosong
 default_config = {
-    "api_id": None,  
-    "api_hash": "",  
-    "phone_number": "",  
-    "delay_min": 30,  
-    "delay_max": 120  
+    "api_id": None,
+    "api_hash": "",
+    "phone_number": phone_number,
+    "delay_min": 30,
+    "delay_max": 120
 }
 
 if not os.path.exists(config_file):
     with open(config_file, 'w', encoding='utf-8') as f:
         json.dump(default_config, f, indent=4)
-    print("File config.json telah dibuat. Silakan isi dengan API ID, Hash, nomor telepon, dan delay.")
+    print("File config.json telah dibuat. Silakan isi dengan API ID, Hash, dan delay.")
 
+# Baca config.json yang ada
 with open(config_file, 'r', encoding='utf-8') as f:
     config = json.load(f)
 
+# Update nomor telepon jika diberikan sebagai argumen dan berbeda dari yang ada di config.json
+if phone_number and config.get('phone_number') != phone_number:
+    config['phone_number'] = phone_number
+    with open(config_file, 'w', encoding='utf-8') as f:
+        json.dump(config, f, indent=4)
+    print(f"Nomor telepon dalam config.json telah diperbarui menjadi {phone_number}.")
+else:
+    # Gunakan nomor telepon dari config.json jika tidak diberikan sebagai argumen
+    phone_number = config.get('phone_number')
+
 api_id = config.get('api_id')
 api_hash = config.get('api_hash')
-phone_number = config.get('phone_number')
 delay_min = config.get('delay_min', 30)
 delay_max = config.get('delay_max', 120)
 
@@ -47,14 +52,14 @@ if api_id is None or api_hash == "" or phone_number == "":
     print("Silakan isi api_id, api_hash, dan phone_number di config.json sebelum menjalankan skrip.")
     exit()
 
-app = Client(phone_number, api_id=api_id, api_hash=api_hash)
+app = Client(phone_number, api_id=api_id, api_hash=api_hash, phone_number=phone_number)
 
 print(f'{datetime.now()}')
-print(f'aplikasi auto komen berhasil dijalankan untuk channels: ')
+print(f'Aplikasi auto komen sudah aktif.')
 
 os.makedirs('text', exist_ok=True)
 
-default_channels = "test13524\nayayawae15243"  
+default_channels = "test13524\nayayawae15243"
 
 if not os.path.exists('channels.txt'):
     with open('channels.txt', 'w', encoding='utf-8') as channels_file:
@@ -74,13 +79,6 @@ async def countdown(t):
         print(f"wait - {hour}:{minute}:{seconds}", flush=True, end="\r")
         await asyncio.sleep(1)
 
-async def is_subscribed(client, channel):
-    try:
-        member = await client.get_chat_member(channel, 'me')
-        return member.status in ['member', 'administrator', 'creator']
-    except Exception as e:
-        print(f'Gagal memeriksa status langganan di {channel}: {e}')
-        return False
 async def handle_message(client, message: types.Message):
     delay = random.randint(delay_min, delay_max)
     dm = await client.get_discussion_message(message.chat.id, message.id)
@@ -108,20 +106,13 @@ async def handle_message(client, message: types.Message):
             elif media_path.lower().endswith(('.mp4', '.avi')):
                 await dm.reply_video(video=media_path, caption=message_text)
                 print(f'Text + Video Terkirim ke {channel_name}')
-        except Forbidden:
-            await dm.chat.join()
-            if media_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-                await dm.reply_photo(photo=media_path, caption=message_text)
-                print(f'Text + Photo Terkirim ke {channel_name}')
-            elif media_path.lower().endswith(('.mp4', '.avi')):
-                await dm.reply_video(video=media_path, caption=message_text)
-                print(f'Text + Video Terkirim ke {channel_name}')
+        except Exception:
+            # Mengabaikan kesalahan ketika tidak bisa mengirim
+            pass
     else:
         await countdown(delay)
         await dm.reply(message_text)
         print(f'Text Terkirim ke {channel_name}')
-
-    await asyncio.sleep(180)
 
 def extract_channel_username(url):
     pattern = r't.me/(joinchat/)?(?P<username>[^/?]+)'
@@ -133,16 +124,15 @@ async def main():
         for channel in target_channels:
             if channel.startswith('https://t.me/'):
                 channel = extract_channel_username(channel)
-            if not await is_subscribed(app, channel):
-                try:
-                    await app.join_chat(channel)
-                    print(f'-{channel}')
-                except Exception as e:
-                    print(f'Gagal bergabung dengan saluran {channel}: {e}')
-                    continue
-            app.add_handler(
-                app.on_message(filters.chat(channel))(handle_message)
-            )
+
+            # Langsung mencoba bergabung dengan saluran
+            try:
+                await app.join_chat(channel)
+                # Menambahkan handler untuk pesan
+                app.add_handler(app.on_message(filters.chat(channel))(handle_message))
+            except Exception:
+                # Mengabaikan kesalahan saat bergabung
+                pass
 
         while True:
             await asyncio.sleep(60)
