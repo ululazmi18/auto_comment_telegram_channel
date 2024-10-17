@@ -51,37 +51,6 @@ python main.py +621234567890
 
 You can download the [**Repository**](https://github.com/username/repo) by cloning it to your system and installing the necessary dependencies. Follow the steps below:
 
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/ululazmi18/auto_comment_telegram_channel.git
-   ```
-   Downloads a copy of the repository to your computer.
-
-2. **Navigate to Directory**
-   ```bash
-   cd auto_comment_telegram_channel
-   ```
-   Moves to the folder containing the script.
-
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-   Installs all required packages listed in `requirements.txt`.
-
-4. **Edit Configuration File**
-   ```bash
-   nano config.json
-   ```
-   Fill it with `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
-
-5. **Run the Script**
-   ```bash
-   python main.py
-   ```
-   Executes the main script to activate the features.
-
----
 
 ### Additional Steps for Termux
 
@@ -112,6 +81,38 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
    ```bash
    git config --global --add safe.directory /storage/emulated/0/auto_comment_telegram_channel
    ```
+
+---
+
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/ululazmi18/auto_comment_telegram_channel.git
+   ```
+   Downloads a copy of the repository to your computer.
+
+2. **Navigate to Directory**
+   ```bash
+   cd auto_comment_telegram_channel
+   ```
+   Moves to the folder containing the script.
+
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   Installs all required packages listed in `requirements.txt`.
+
+4. **Edit Configuration File**
+   ```bash
+   nano config.json
+   ```
+   Fill it with `API_ID`, `API_HASH`, and `PHONE_NUMBER`.
+
+5. **Run the Script**
+   ```bash
+   python main.py
+   ```
+   Executes the main script to activate the features.
 
 ---
 
