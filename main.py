@@ -81,9 +81,6 @@ if api_id is None or api_hash == "":
 
 app = Client(phone_number, api_id=api_id, api_hash=api_hash)
 
-print(f'{datetime.now()} ({phone_number})')
-print(f'Aplikasi auto komen sudah aktif.')
-
 os.makedirs('text', exist_ok=True)
 
 default_channels = "test13524\nayayawae15243"
@@ -108,8 +105,12 @@ async def countdown(t):
 
 async def handle_message(client, message: types.Message):
     delay = random.randint(delay_min, delay_max)
-    dm = await client.get_discussion_message(message.chat.id, message.id)
 
+    reply_message = message  # Langsung gunakan message sebagai reply_message
+
+    await countdown(delay)  # Menampilkan hitungan mundur
+
+    # Ambil teks untuk dikirim
     text_files = [f for f in os.listdir('text') if f.endswith('.txt')]
     if text_files:
         random_text_file = random.choice(text_files)
@@ -125,29 +126,21 @@ async def handle_message(client, message: types.Message):
     if media_files:
         media_file = random.choice(media_files)
         media_path = os.path.join('media', media_file)
-        await countdown(delay)
-        try:
-            if media_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-                await dm.reply_photo(photo=media_path, caption=message_text)
-                print(f'Text + Photo Terkirim ke {channel_name}')
-            elif media_path.lower().endswith(('.mp4', '.avi')):
-                await dm.reply_video(video=media_path, caption=message_text)
-                print(f'Text + Video Terkirim ke {channel_name}')
-        except Exception:
-            # Mengabaikan kesalahan ketika tidak bisa mengirim
-            pass
+        if media_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+            await reply_message.reply_photo(photo=media_path, caption=message_text)
+            print(f'Text + Photo Terkirim ke {channel_name}')
+        elif media_path.lower().endswith(('.mp4', '.avi')):
+            await reply_message.reply_video(video=media_path, caption=message_text)
+            print(f'Text + Video Terkirim ke {channel_name}')
     else:
-        await countdown(delay)
-        await dm.reply(message_text)
+        await reply_message.reply(message_text)
         print(f'Text Terkirim ke {channel_name}')
 
-def extract_channel_username(url):
-    pattern = r't.me/(joinchat/)?(?P<username>[^/?]+)'
-    match = re.search(pattern, url)
-    return match.group('username') if match else None
-    
 async def main():
     async with app:
+        print(f'{datetime.now()} ({phone_number})')
+        print(f'Aplikasi auto komen sudah aktif.')
+
         for channel in target_channels:
             app.add_handler(app.on_message(filters.chat(channel))(handle_message))
 
