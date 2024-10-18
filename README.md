@@ -79,6 +79,8 @@ You can download the [**Repository**](https://github.com/username/repo) by cloni
 5. **Set Up Git for Security**
    To allow Git operations in Termux, run:
    ```bash
+   git clone https://github.com/ululazmi18/auto_comment_telegram_channel.git
+   cd auto_comment_telegram_channel
    git config --global --add safe.directory /storage/emulated/0/auto_comment_telegram_channel
    ```
 
