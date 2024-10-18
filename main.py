@@ -1,5 +1,5 @@
 import argparse
-from pyrogram import Client, types, filters
+from pyrogram import Client, types, filters, errors
 from datetime import datetime
 import re
 import asyncio
@@ -79,7 +79,7 @@ if api_id is None or api_hash == "":
     print("python main.py +621234567890 --api 123456 abcdef1234567890abcdef1234567890 --delay 10 60")
     exit()
 
-app = Client(phone_number, api_id=api_id, api_hash=api_hash)
+app = Client(phone_number, api_id=api_id, api_hash=api_hash, phone_number=phone_number)
 
 os.makedirs('text', exist_ok=True)
 
@@ -119,25 +119,32 @@ async def handle_message(client, message: types.Message):
     media_files = [f for f in os.listdir('media') if f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.mp4', '.avi'))]
 
     channel_name = message.chat.title or message.chat.username or message.chat.id
+    try:
+        if media_files:
+            media_file = random.choice(media_files)
+            media_path = os.path.join('media', media_file)
+            await countdown(delay)
+            try:
+                if media_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+                    await dm.reply_photo(photo=media_path, caption=message_text)
+                    print(f'Text + Photo Terkirim ke {channel_name}')
+                elif media_path.lower().endswith(('.mp4', '.avi')):
+                    await dm.reply_video(video=media_path, caption=message_text)
+                    print(f'Text + Video Terkirim ke {channel_name}')
+            except Exception:
+                # Mengabaikan kesalahan ketika tidak bisa mengirim
+                pass
+        else:
+            await countdown(delay)
+            await dm.reply(message_text)
+            print(f'Text Terkirim ke {channel_name}')
 
-    if media_files:
-        media_file = random.choice(media_files)
-        media_path = os.path.join('media', media_file)
-        await countdown(delay)
-        try:
-            if media_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-                await dm.reply_photo(photo=media_path, caption=message_text)
-                print(f'Text + Photo Terkirim ke {channel_name}')
-            elif media_path.lower().endswith(('.mp4', '.avi')):
-                await dm.reply_video(video=media_path, caption=message_text)
-                print(f'Text + Video Terkirim ke {channel_name}')
-        except Exception:
-            # Mengabaikan kesalahan ketika tidak bisa mengirim
-            pass
-    else:
-        await countdown(delay)
-        await dm.reply(message_text)
-        print(f'Text Terkirim ke {channel_name}')
+    except errors.FloodWait as e:
+        print(f"Flood wait: {e.x + 10} detik. Menghentikan sementara...")
+        await asyncio.sleep(e.x + 10)  # Menunggu e.x + 10 detik
+    
+    except Exception as e:
+        print(f"❌ {channel_name}")
 
 def extract_channel_username(url):
     pattern = r't.me/(joinchat/)?(?P<username>[^/?]+)'
